@@ -7,21 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		704C0D5F2319D77B00FA07B4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704C0D5E2319D77B00FA07B4 /* HomeViewController.swift */; };
+		704C0D612319F15000FA07B4 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704C0D602319F15000FA07B4 /* CustomTabBar.swift */; };
+		7097A7DF2319F9320036E1B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7097A7DE2319F9320036E1B2 /* Assets.xcassets */; };
+		7097A7E1231A02BF0036E1B2 /* NearbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7097A7E0231A02BF0036E1B2 /* NearbyViewController.swift */; };
+		7097A7E3231A03B60036E1B2 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7097A7E2231A03B60036E1B2 /* ScheduleViewController.swift */; };
+		7097A7E5231A03C90036E1B2 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7097A7E4231A03C90036E1B2 /* ProfileViewController.swift */; };
 		70CFE73C2316F82000EB2566 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CFE73B2316F82000EB2566 /* AppDelegate.swift */; };
-		70CFE73E2316F82000EB2566 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CFE73D2316F82000EB2566 /* ViewController.swift */; };
+		70CFE73E2316F82000EB2566 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CFE73D2316F82000EB2566 /* LoginViewController.swift */; };
 		70CFE7412316F82000EB2566 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70CFE73F2316F82000EB2566 /* Main.storyboard */; };
-		70CFE7432316F82100EB2566 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70CFE7422316F82100EB2566 /* Assets.xcassets */; };
 		70CFE7462316F82100EB2566 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70CFE7442316F82100EB2566 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		703EC7F6231840040055F9BA /* PantonNarrowDemo-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PantonNarrowDemo-Black.otf"; sourceTree = "<group>"; };
 		703EC7F7231840040055F9BA /* PantonDemo-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PantonDemo-Black.otf"; sourceTree = "<group>"; };
+		704C0D5E2319D77B00FA07B4 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		704C0D602319F15000FA07B4 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
+		7097A7DE2319F9320036E1B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7097A7E0231A02BF0036E1B2 /* NearbyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyViewController.swift; sourceTree = "<group>"; };
+		7097A7E2231A03B60036E1B2 /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
+		7097A7E4231A03C90036E1B2 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		70CFE7382316F82000EB2566 /* gearUP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gearUP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70CFE73B2316F82000EB2566 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		70CFE73D2316F82000EB2566 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		70CFE73D2316F82000EB2566 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		70CFE7402316F82000EB2566 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		70CFE7422316F82100EB2566 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		70CFE7452316F82100EB2566 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		70CFE7472316F82100EB2566 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -66,12 +76,17 @@
 			isa = PBXGroup;
 			children = (
 				70CFE73B2316F82000EB2566 /* AppDelegate.swift */,
-				70CFE73D2316F82000EB2566 /* ViewController.swift */,
+				704C0D5E2319D77B00FA07B4 /* HomeViewController.swift */,
+				70CFE73D2316F82000EB2566 /* LoginViewController.swift */,
+				7097A7E0231A02BF0036E1B2 /* NearbyViewController.swift */,
+				7097A7E2231A03B60036E1B2 /* ScheduleViewController.swift */,
+				7097A7E4231A03C90036E1B2 /* ProfileViewController.swift */,
 				70CFE73F2316F82000EB2566 /* Main.storyboard */,
-				70CFE7422316F82100EB2566 /* Assets.xcassets */,
 				70CFE7442316F82100EB2566 /* LaunchScreen.storyboard */,
+				7097A7DE2319F9320036E1B2 /* Assets.xcassets */,
 				70CFE7472316F82100EB2566 /* Info.plist */,
 				703EC7F523183FE00055F9BA /* Fonts */,
+				704C0D602319F15000FA07B4 /* CustomTabBar.swift */,
 			);
 			path = gearUP;
 			sourceTree = "<group>";
@@ -135,7 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				70CFE7462316F82100EB2566 /* LaunchScreen.storyboard in Resources */,
-				70CFE7432316F82100EB2566 /* Assets.xcassets in Resources */,
+				7097A7DF2319F9320036E1B2 /* Assets.xcassets in Resources */,
 				70CFE7412316F82000EB2566 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -147,8 +162,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70CFE73E2316F82000EB2566 /* ViewController.swift in Sources */,
+				704C0D612319F15000FA07B4 /* CustomTabBar.swift in Sources */,
+				70CFE73E2316F82000EB2566 /* LoginViewController.swift in Sources */,
+				7097A7E1231A02BF0036E1B2 /* NearbyViewController.swift in Sources */,
+				7097A7E3231A03B60036E1B2 /* ScheduleViewController.swift in Sources */,
+				7097A7E5231A03C90036E1B2 /* ProfileViewController.swift in Sources */,
 				70CFE73C2316F82000EB2566 /* AppDelegate.swift in Sources */,
+				704C0D5F2319D77B00FA07B4 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

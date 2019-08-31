@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class LoginViewController: UIViewController {
 
   
     let backgroundImage: UIImageView = {
@@ -57,7 +57,7 @@ class ViewController: UIViewController {
 
         button.setTitleColor(.white, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(handlePrevious), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
         return button
     }()
     
@@ -114,6 +114,7 @@ class ViewController: UIViewController {
         button.layer.cornerRadius = 10
         button.clipsToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(LoginBtnWasPressed), for: .touchUpInside)
         return button
     }()
     
@@ -204,7 +205,7 @@ class ViewController: UIViewController {
     }
     
     
-    @objc func handlePrevious(){
+    @objc func handleLogin(){
         loginButton.backgroundColor = .none
         registerButton.backgroundColor = UIColor(red: 99/255, green: 42/255, blue: 195/255, alpha: 1)
 
@@ -214,6 +215,12 @@ class ViewController: UIViewController {
         registerButton.backgroundColor = .none
         loginButton.backgroundColor = UIColor(red: 99/255, green: 42/255, blue: 195/255, alpha: 1)
      
+    }
+    
+    @objc func LoginBtnWasPressed(){
+        //performSegue(withIdentifier: "showHomeScreen", sender: self)
+        let homeViewController = HomeViewController()
+        self.present(homeViewController, animated: true, completion: nil)
     }
     
     
