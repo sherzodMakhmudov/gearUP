@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		702DB5C4231B7197004C674E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 702DB5C3231B7197004C674E /* MapKit.framework */; };
+		702DB5C6231B7A4F004C674E /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702DB5C5231B7A4F004C674E /* DashboardViewController.swift */; };
 		704C0D5F2319D77B00FA07B4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704C0D5E2319D77B00FA07B4 /* HomeViewController.swift */; };
 		704C0D612319F15000FA07B4 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704C0D602319F15000FA07B4 /* CustomTabBar.swift */; };
+		706062D7231CDA950045C2E9 /* DashboardCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706062D6231CDA950045C2E9 /* DashboardCustomCell.swift */; };
 		7097A7DF2319F9320036E1B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7097A7DE2319F9320036E1B2 /* Assets.xcassets */; };
 		7097A7E1231A02BF0036E1B2 /* NearbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7097A7E0231A02BF0036E1B2 /* NearbyViewController.swift */; };
 		7097A7E3231A03B60036E1B2 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7097A7E2231A03B60036E1B2 /* ScheduleViewController.swift */; };
@@ -17,13 +20,17 @@
 		70CFE73E2316F82000EB2566 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CFE73D2316F82000EB2566 /* LoginViewController.swift */; };
 		70CFE7412316F82000EB2566 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70CFE73F2316F82000EB2566 /* Main.storyboard */; };
 		70CFE7462316F82100EB2566 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70CFE7442316F82100EB2566 /* LaunchScreen.storyboard */; };
+		70E5E90423232949009540F5 /* CellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E5E90323232949009540F5 /* CellModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		702DB5C3231B7197004C674E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		702DB5C5231B7A4F004C674E /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		703EC7F6231840040055F9BA /* PantonNarrowDemo-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PantonNarrowDemo-Black.otf"; sourceTree = "<group>"; };
 		703EC7F7231840040055F9BA /* PantonDemo-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PantonDemo-Black.otf"; sourceTree = "<group>"; };
 		704C0D5E2319D77B00FA07B4 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		704C0D602319F15000FA07B4 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
+		706062D6231CDA950045C2E9 /* DashboardCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCustomCell.swift; sourceTree = "<group>"; };
 		7097A7DE2319F9320036E1B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7097A7E0231A02BF0036E1B2 /* NearbyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyViewController.swift; sourceTree = "<group>"; };
 		7097A7E2231A03B60036E1B2 /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
@@ -34,6 +41,7 @@
 		70CFE7402316F82000EB2566 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		70CFE7452316F82100EB2566 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		70CFE7472316F82100EB2566 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		70E5E90323232949009540F5 /* CellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,12 +49,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				702DB5C4231B7197004C674E /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		702DB5C2231B7197004C674E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				702DB5C3231B7197004C674E /* MapKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		703EC7F523183FE00055F9BA /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -61,6 +78,7 @@
 			children = (
 				70CFE73A2316F82000EB2566 /* gearUP */,
 				70CFE7392316F82000EB2566 /* Products */,
+				702DB5C2231B7197004C674E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -79,6 +97,7 @@
 				704C0D5E2319D77B00FA07B4 /* HomeViewController.swift */,
 				70CFE73D2316F82000EB2566 /* LoginViewController.swift */,
 				7097A7E0231A02BF0036E1B2 /* NearbyViewController.swift */,
+				702DB5C5231B7A4F004C674E /* DashboardViewController.swift */,
 				7097A7E2231A03B60036E1B2 /* ScheduleViewController.swift */,
 				7097A7E4231A03C90036E1B2 /* ProfileViewController.swift */,
 				70CFE73F2316F82000EB2566 /* Main.storyboard */,
@@ -87,6 +106,8 @@
 				70CFE7472316F82100EB2566 /* Info.plist */,
 				703EC7F523183FE00055F9BA /* Fonts */,
 				704C0D602319F15000FA07B4 /* CustomTabBar.swift */,
+				706062D6231CDA950045C2E9 /* DashboardCustomCell.swift */,
+				70E5E90323232949009540F5 /* CellModel.swift */,
 			);
 			path = gearUP;
 			sourceTree = "<group>";
@@ -123,6 +144,11 @@
 				TargetAttributes = {
 					70CFE7372316F82000EB2566 = {
 						CreatedOnToolsVersion = 10.3;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -168,7 +194,10 @@
 				7097A7E3231A03B60036E1B2 /* ScheduleViewController.swift in Sources */,
 				7097A7E5231A03C90036E1B2 /* ProfileViewController.swift in Sources */,
 				70CFE73C2316F82000EB2566 /* AppDelegate.swift in Sources */,
+				706062D7231CDA950045C2E9 /* DashboardCustomCell.swift in Sources */,
+				70E5E90423232949009540F5 /* CellModel.swift in Sources */,
 				704C0D5F2319D77B00FA07B4 /* HomeViewController.swift in Sources */,
+				702DB5C6231B7A4F004C674E /* DashboardViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

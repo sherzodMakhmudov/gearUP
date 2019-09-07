@@ -7,8 +7,24 @@
 //
 
 import UIKit
+import MapKit
 
 class NearbyViewController: UIViewController{
+    
+    let viewForMap: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
+    let nearbyMap: MKMapView =  {
+        let map = MKMapView()
+       // map.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+        map.mapType = MKMapType.standard
+        map.isZoomEnabled = true
+        map.isScrollEnabled = true
+        map.translatesAutoresizingMaskIntoConstraints = false
+        return map
+    }()
     let topView: UIView = {
         let container = UIView()
         container.backgroundColor = .blue
@@ -57,6 +73,7 @@ class NearbyViewController: UIViewController{
         topView.addSubview(leftSideMenuButton)
         topView.addSubview(rightSideNotificationButton)
         topView.addSubview(nearbyLabel)
+        view.addSubview(nearbyMap)
         
         setupLayout()
     }
@@ -80,6 +97,11 @@ class NearbyViewController: UIViewController{
         
         nearbyLabel.leadingAnchor.constraint(equalTo: topView.leadingAnchor, constant: 20).isActive = true
         nearbyLabel.bottomAnchor.constraint(equalTo: topView.bottomAnchor, constant: -5).isActive = true
+        
+        nearbyMap.topAnchor.constraint(equalTo: topView.bottomAnchor).isActive = true
+        nearbyMap.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        nearbyMap.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        nearbyMap.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
 
 }

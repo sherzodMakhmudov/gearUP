@@ -17,7 +17,7 @@ class CustomTabBar: UITabBarController, UITabBarControllerDelegate {
         homeViewController.tabBarItem.title = "Discover"
         homeViewController.tabBarItem.image = UIImage(named: "discoverImage")
         
-        viewControllers = [homeViewController, createViewControllers(viewController: NearbyViewController(),title: "Nearby", imageName: "nearbyImage"), createViewControllers(viewController: ScheduleViewController(), title: "Schedule", imageName: "scheduleImage"), createViewControllers(viewController: ProfileViewController(), title: "Profile", imageName: "profileImage")]
+        viewControllers = [homeViewController, createViewControllers(viewController: NearbyViewController(),title: "Nearby", imageName: "nearbyImage"), createViewControllers(viewController: DashboardViewController(), title: "Schedule/Dash", imageName: "scheduleImage"), createViewControllers(viewController: ProfileViewController(), title: "Profile", imageName: "profileImage")]
         
     }
     
