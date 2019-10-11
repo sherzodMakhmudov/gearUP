@@ -30,6 +30,7 @@ class HomeViewController: UIViewController {
         button.setBackgroundImage(image, for: .normal)
         button.contentMode = .redraw
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(handleSideMenu), for: .touchUpInside)
         return button
     }()
     
@@ -67,6 +68,7 @@ class HomeViewController: UIViewController {
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -113,5 +115,11 @@ class HomeViewController: UIViewController {
         searchTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
     }
+        let sideMenuLauncher = SideMenuLauncher()
+    
+    @objc private func handleSideMenu(){
+        sideMenuLauncher.showSideMenu()
+    }
+    
 
 }
