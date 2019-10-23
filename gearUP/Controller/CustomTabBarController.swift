@@ -10,15 +10,13 @@ import UIKit
 
 class CustomTabBar: UITabBarController, UITabBarControllerDelegate {
 
+    let mainViewController = MainViewController()
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let homeViewController = HomeViewController()
-        homeViewController.tabBarItem.title = "Discover"
-        homeViewController.tabBarItem.image = UIImage(named: "discoverImage")
-        
-        viewControllers = [homeViewController, createViewControllers(viewController: NearbyViewController(),title: "Nearby", imageName: "nearbyImage"), createViewControllers(viewController: DashboardViewController(), title: "Schedule/Dash", imageName: "scheduleImage"), createViewControllers(viewController: ProfileViewController(), title: "Profile", imageName: "profileImage")]
-        
+        mainViewController.tabBarItem.title = "Discover"
+        mainViewController.tabBarItem.image = UIImage(named: "discoverImage")
+        viewControllers = [mainViewController, createViewControllers(viewController: NearbyViewController(),title: "Nearby", imageName: "nearbyImage"), createViewControllers(viewController: DashboardViewController(), title: "Schedule/Dash", imageName: "scheduleImage"), createViewControllers(viewController: ProfileViewController(), title: "Profile", imageName: "profileImage")]
     }
     
     private func createViewControllers(viewController: UIViewController,title: String, imageName: String) -> UIViewController{
@@ -28,4 +26,6 @@ class CustomTabBar: UITabBarController, UITabBarControllerDelegate {
         viewController.tabBarItem.image = UIImage(named: imageName)
         return viewController
     }
+    
 }
+
