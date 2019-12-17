@@ -8,23 +8,29 @@
 
 import UIKit
 import MapKit
+import CoreLocation
+import Firebase
 
 class NearbyViewController: UIViewController{
+    var locationManager: CLLocationManager?
+    var isToggleOn = false
+    var selectedUserFromMap: User?
     
     let viewForMap: UIView = {
         let view = UIView()
         return view
     }()
     
-    let nearbyMap: MKMapView =  {
-        let map = MKMapView()
-       // map.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-        map.mapType = MKMapType.standard
-        map.isZoomEnabled = true
-        map.isScrollEnabled = true
-        map.translatesAutoresizingMaskIntoConstraints = false
-        return map
+
+    let mapView: MKMapView =  {
+       let map = MKMapView()
+       map.mapType = MKMapType.standard
+       map.isZoomEnabled = true
+       map.isScrollEnabled = true
+       map.translatesAutoresizingMaskIntoConstraints = false
+       return map
     }()
+    
     let topView: UIView = {
         let container = UIView()
         container.backgroundColor = .blue
@@ -66,6 +72,19 @@ class NearbyViewController: UIViewController{
         return label
     }()
     
+    let locationToggle: UISwitch = {
+        let view = UISwitch(frame: .zero)
+        view.setOn(false, animated: true)
+        view.backgroundColor = .white
+        view.layer.cornerRadius = view.frame.height/2
+        view.layer.masksToBounds = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.isHidden = true
+        view.addTarget(self, action: #selector(handleLocationToggle), for: .touchUpInside)
+        return view
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(topView)
@@ -73,35 +92,13 @@ class NearbyViewController: UIViewController{
         topView.addSubview(leftSideMenuButton)
         topView.addSubview(rightSideNotificationButton)
         topView.addSubview(nearbyLabel)
-        view.addSubview(nearbyMap)
+        topView.addSubview(locationToggle)
+        view.addSubview(mapView)
         
         setupLayout()
+        configureMap()
+        configureLocationManager()
+        centerMapOnUserLocation()
+        showHandymanAnnotationOnMap()
     }
-    
-    func setupLayout(){
-        topView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        topView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        topView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        topView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.2).isActive = true
-        
-        topImageView.topAnchor.constraint(equalTo: topView.topAnchor).isActive = true
-        topImageView.trailingAnchor.constraint(equalTo: topView.trailingAnchor).isActive = true
-        topImageView.leadingAnchor.constraint(equalTo: topView.leadingAnchor).isActive = true
-        topImageView.bottomAnchor.constraint(equalTo: topView.bottomAnchor).isActive = true
-        
-        leftSideMenuButton.topAnchor.constraint(equalTo: topView.topAnchor, constant: 30).isActive = true
-        leftSideMenuButton.leadingAnchor.constraint(equalTo: topView.leadingAnchor, constant: 16).isActive = true
-        
-        rightSideNotificationButton.topAnchor.constraint(equalTo: topView.topAnchor, constant: 30).isActive = true
-        rightSideNotificationButton.trailingAnchor.constraint(equalTo: topView.trailingAnchor, constant: -16).isActive = true
-        
-        nearbyLabel.leadingAnchor.constraint(equalTo: topView.leadingAnchor, constant: 20).isActive = true
-        nearbyLabel.bottomAnchor.constraint(equalTo: topView.bottomAnchor, constant: -5).isActive = true
-        
-        nearbyMap.topAnchor.constraint(equalTo: topView.bottomAnchor).isActive = true
-        nearbyMap.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        nearbyMap.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        nearbyMap.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-    }
-
 }

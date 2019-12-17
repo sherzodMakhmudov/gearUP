@@ -61,5 +61,9 @@
 	</array>
 	<key>UISupportsDocumentBrowser</key>
 	<false/>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Please allow us to access your location in order to locate the closes handyman</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Please allow us to access your location in order to locate the closes handyman</string>
 </dict>
 </plist>

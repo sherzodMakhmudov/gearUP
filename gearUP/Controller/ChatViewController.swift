@@ -9,11 +9,21 @@
 import UIKit
 import Firebase
 
-class MessageViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UICollectionViewDelegate{
+class ChatViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate{
+    
+    var userData: User?{
+        didSet{
+            guard let user = userData else {return}
+            guard let name = user.username else {return}
+            nameLabel.text = name
+            fetchMessages(chosenUserId: user.id!)
+        }
+    }
     
     let cellId = "cell"
     let currentUserId = Auth.auth().currentUser?.uid
     let databaseReference = Database.database().reference()
+    var messages = [Message]()
     
     let viewBackColor = UIColor(red: 234/255, green: 234/255, blue: 244/255, alpha: 1)
     let topView: UIView = {
@@ -63,7 +73,7 @@ class MessageViewController: UIViewController, UICollectionViewDelegateFlowLayou
         view.backgroundColor = .none
         return view
     }()
-    
+
     let bottomView: UIView = {
         let view = UIView()
         view.backgroundColor = .none
@@ -73,18 +83,27 @@ class MessageViewController: UIViewController, UICollectionViewDelegateFlowLayou
     
     let viewForTextfield: UIView = {
         let view = UIView()
-        view.backgroundColor = .red
-        view.layer.cornerRadius = 25
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 16
         view.layer.masksToBounds = false
-        view.clipsToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
+    }()
+    
+    lazy var messageTextfield: UITextField = {
+        let field = UITextField()
+        field.delegate = self
+        field.placeholder = "Message..."
+        field.backgroundColor = .none
+        field.translatesAutoresizingMaskIntoConstraints = false
+        return field
     }()
     
     let sendMessageButton: UIButton = {
         let button = UIButton(type: .system)
         let image = UIImage(named: "SendButton")
         button.setBackgroundImage(image, for: .normal)
+        button.addTarget(self, action: #selector(handleSend), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -103,22 +122,33 @@ class MessageViewController: UIViewController, UICollectionViewDelegateFlowLayou
         topView.addSubview(userProfileImage)
         topView.addSubview(nameLabel)
         bottomView.addSubview(viewForTextfield)
+        viewForTextfield.addSubview(messageTextfield)
         bottomView.addSubview(sendMessageButton)
-        fetchUserData()
+        
         setupLayouts()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return messages.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! MessageCell
+        cell.message = messages[indexPath.item]
+        cell.backgroundColor = .none
+        cell.bubbleWidthAnnchor?.constant = estimatedHeight(text: messages[indexPath.item].text!).width + 32
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellSizeParameters = CGSize(width: view.frame.width, height: view.frame.height * 0.07)
+        var height: CGFloat = 40
+    
+        if let text = messages[indexPath.item].text{
+            height = estimatedHeight(text: text).height + 35
+         
+        }
+       
+        let cellSizeParameters = CGSize(width: view.frame.width, height: height)
         return cellSizeParameters
     }
     
@@ -131,67 +161,21 @@ class MessageViewController: UIViewController, UICollectionViewDelegateFlowLayou
         super.present(viewControllerToPresent, animated: flag, completion: completion)
     }
     
-    @objc func handleBackButton(){
-        let homeViewController = CustomTabBarController()
-        dismiss(animated: true, completion: nil)
-        present(homeViewController, animated: true, completion: nil)
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
     }
     
-    private func fetchUserData(){
-        if currentUserId != nil{
-            databaseReference.child("users").child("\(currentUserId!)").observe(.value) { (snapshot) in
-                if let userData = snapshot.value as? [String: Any]{
-                    self.nameLabel.text = userData["username"] as? String
-                }
-            }
-            
-              
-        }else{
-            print("User has not been logged in yet")
-            return
-        }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+        return true
     }
     
-    
-    private func setupLayouts(){
-        topView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        topView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        topView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        topView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.19).isActive = true
-        
-        topImageView.topAnchor.constraint(equalTo: topView.topAnchor).isActive = true
-        topImageView.leadingAnchor.constraint(equalTo: topView.leadingAnchor).isActive = true
-        topImageView.trailingAnchor.constraint(equalTo: topView.trailingAnchor).isActive = true
-        topImageView.bottomAnchor.constraint(equalTo: topView.bottomAnchor).isActive = true
-        
-        backButton.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height * 0.05).isActive = true
-        backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
-        
-        userProfileImage.topAnchor.constraint(equalTo: backButton.bottomAnchor, constant: view.frame.height * 0.04).isActive = true
-        userProfileImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 18).isActive = true
-        
-        nameLabel.centerXAnchor.constraint(equalTo: userProfileImage.centerXAnchor, constant: 30+userProfileImage.frame.width).isActive = true
-        nameLabel.centerYAnchor.constraint(equalTo: userProfileImage.centerYAnchor).isActive = true
-        
-        collectionView.topAnchor.constraint(equalTo: topView.bottomAnchor, constant: view.frame.height * 0.01).isActive = true
-        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        collectionView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.6).isActive = true
-        
-        bottomView.topAnchor.constraint(equalTo: collectionView.bottomAnchor).isActive = true
-        bottomView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        bottomView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        bottomView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        
-        viewForTextfield.centerXAnchor.constraint(equalTo: bottomView.centerXAnchor, constant: -25).isActive = true
-        viewForTextfield.centerYAnchor.constraint(equalTo: bottomView.centerYAnchor).isActive = true
-        viewForTextfield.heightAnchor.constraint(equalTo: bottomView.heightAnchor, multiplier: 0.3).isActive = true
-        viewForTextfield.widthAnchor.constraint(equalTo: bottomView.widthAnchor, multiplier: 0.7).isActive = true
-        
-        sendMessageButton.centerYAnchor.constraint(equalTo: viewForTextfield.centerYAnchor).isActive = true
-        sendMessageButton.leadingAnchor.constraint(equalTo: viewForTextfield.trailingAnchor, constant: 10).isActive = true
-        
+    private func estimatedHeight(text: String) -> CGRect{
+        let size = CGSize(width: 200, height: 1000)
+        let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+        return NSString(string: text).boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 10)], context: nil)
     }
+    
 }
 
 

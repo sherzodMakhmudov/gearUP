@@ -39,7 +39,7 @@ class DashboardViewController: UIViewController, UICollectionViewDelegateFlowLay
     }()
     
     let topBackgroundImage: UIImageView = {
-        let image = UIImage(named: "topBackgroundImage")
+        let image = UIImage(named: "topBkgImage")
         let imageView = UIImageView(image: image)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -91,7 +91,10 @@ class DashboardViewController: UIViewController, UICollectionViewDelegateFlowLay
     let switchToggle: UISwitch = {
         let toggle = UISwitch()
         toggle.translatesAutoresizingMaskIntoConstraints = false
-        toggle.isOn = false
+        toggle.setOn(false, animated: true)
+        toggle.backgroundColor = .white
+        toggle.layer.cornerRadius = toggle.frame.height/2
+        toggle.layer.masksToBounds = true
         return toggle
     }()
     

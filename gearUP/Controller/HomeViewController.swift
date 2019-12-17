@@ -7,8 +7,13 @@
 //
 
 import UIKit
+import VerticalCardSwiper
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController{
+    let cellId = "cell"
+
+    var delegate: HomeViewControllerDelegate?
+    var handymanArray = [User]()
     
     let topView: UIView = {
         let container = UIView()
@@ -69,6 +74,13 @@ class HomeViewController: UIViewController {
         return textField
     }()
     
+    lazy var cardSwiper: VerticalCardSwiper = {
+        let view = VerticalCardSwiper()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.isSideSwipingEnabled = false
+        view.stackedCardsCount = 2
+        return view
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,46 +92,23 @@ class HomeViewController: UIViewController {
         topView.addSubview(discoverLabel)
         view.addSubview(mapImage)
         view.addSubview(searchTextField)
+        view.addSubview(cardSwiper)
+//        cardSwiper.backgroundColor = .blue
+        cardSwiper.datasource = self
+        cardSwiper.delegate = self
+        cardSwiper.register(HandymanCardCell.self, forCellWithReuseIdentifier: "cardCell")
         
+        observeHandyman()
         setupLayouts()
-        
     }
-    
-    
-    private func setupLayouts(){
-        topView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        topView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        topView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        topView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.2).isActive = true
-        
-        topImageView.topAnchor.constraint(equalTo: topView.topAnchor).isActive = true
-        topImageView.trailingAnchor.constraint(equalTo: topView.trailingAnchor).isActive = true
-        topImageView.leadingAnchor.constraint(equalTo: topView.leadingAnchor).isActive = true
-        topImageView.bottomAnchor.constraint(equalTo: topView.bottomAnchor).isActive = true
-        
-        leftSideMenuButton.topAnchor.constraint(equalTo: topView.topAnchor, constant: 30).isActive = true
-        leftSideMenuButton.leadingAnchor.constraint(equalTo: topView.leadingAnchor, constant: 16).isActive = true
-        
-        rightSideNotificationButton.topAnchor.constraint(equalTo: topView.topAnchor, constant: 30).isActive = true
-        rightSideNotificationButton.trailingAnchor.constraint(equalTo: topView.trailingAnchor, constant: -16).isActive = true
-     
-        discoverLabel.leadingAnchor.constraint(equalTo: topView.leadingAnchor, constant: 20).isActive = true
-        discoverLabel.bottomAnchor.constraint(equalTo: topView.bottomAnchor, constant: -5).isActive = true
-        
-        mapImage.topAnchor.constraint(equalTo: topView.bottomAnchor).isActive = true
-        mapImage.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        mapImage.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        mapImage.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        
-        searchTextField.topAnchor.constraint(equalTo: topView.bottomAnchor, constant: 20).isActive = true
-        searchTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        
-    }
-        let sideMenuLauncher = SideMenuLauncher()
-    
-    @objc private func handleSideMenu(){
-        sideMenuLauncher.showSideMenu()
-    }
-    
 
+    @objc func handleSideMenu(){
+        print("pressed")
+        delegate?.toggleLeftPanel()
+    }
+}
+
+protocol HomeViewControllerDelegate {
+    func toggleLeftPanel()
+    func toggleRightPanel()
 }
